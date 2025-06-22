@@ -1,7 +1,4 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byName;
@@ -12,6 +9,11 @@ import static com.codeborne.selenide.Selenide.open;
 public class demoqaTest {
 
     int result;
+
+    @BeforeAll
+    static void BeforeAll () {
+        System.out.println("###   BeforeAll()");
+    }
 
     @BeforeEach
     void BeforeEach () {
@@ -46,6 +48,11 @@ public class demoqaTest {
 
     private int getResult() {
         return 3;
+    }
+
+    @AfterAll
+    static void AfterAll () {
+        System.out.println("###   AfterAll()");
     }
 }
 
