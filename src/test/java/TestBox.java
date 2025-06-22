@@ -10,18 +10,22 @@ public class TestBox {
     @BeforeAll
     static void BeforeAll () {
         Configuration.browserSize = "1920x1980";
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.holdBrowserOpen = true;
     }
 
     @Test
     void FillFormTest() {
-        Configuration.pageLoadStrategy = "eager";
-        open("https://demoqa.com/text-box");
+        open("/text-box");
         $("#userName").setValue("Yana");
         $("#userEmail").setValue("yana@gmail.com");
         $("#currentAddress").setValue("Some street 1");
         $("#permanentAddress").setValue("Another street 1");
         $("#submit").click();
-
-        $("[id=search]").shouldHave(text("https://selenide.org"));
+        $("#output").$("#name").shouldHave(text("Yana"));
+        $("#output #email").shouldHave(text("yana@gmail.com"));
+        $("#currentAddress", 1).shouldHave(text("Some street 1"));
+        $("#output").$("#permanentAddress").shouldHave(text("Another street 1"));
     }
 }
